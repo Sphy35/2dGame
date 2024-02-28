@@ -1,61 +1,33 @@
-# Import Feb 19, 2024. 2:34pm.
+#All Exports Needed for the code to work. Feb, 27, 2024. 7:32pm. 
 import pygame
+import random 
 import os
 import time
-import random  
-pygame.init()
 
-# Images
+#Determines Height
+WIDTH, HEIGHT = 900, 900
+WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 
-Main_player = pygame.image.load(os.path.join("2d Game", "Main.png"))
+#Window Name
+pygame.display.set_caption("Not Determined")
 
-# Screen Window
-screen = pygame.display.set_mode((600, 600))
+# Imports all the Images. 
+Main_Character = pygame.image.load(os.path.join("assets"), ("Main.png"))
 
-# Player. Feb,19 ,2024. 3:27pm. 
-player = pygame.Rect((300, 250 ,50 , 50))
+#What starts the Window 
+def main():
+    run = True
+    FPS = 60 
+    clock = pygame.time.Clock()
 
-class Main:
-    def __init__(self, x, y, health=100):
-        self.x = x
-        self.y = y
-        self.health = 100
-        self.Main_img = None
-        self.Bullet_img = None
-        self.Bullet = []
-        self.cool_down_counter = 0
+    while run:
+        #Makes sure the Game gets' consisted FPS.
+        Clock.tick(FPS)
 
-    def draw(self, window):
-        pygame.draw.rect(window, (255, 0, 0), (self.x, self.y, 50, 50), 2)
-
-# Exits
-        
-run = True
-
-main = Main(600, 300)
-
-while run:
-        
-    # NO traces
-    screen.fill((0, 0, 0))
-
-    # Describes the movement
-    key = pygame.key.get_pressed()
-    if key[pygame.K_a] == True:
-        player.move_ip(-1, 0)
-    elif key[pygame.K_d] == True:
-       player.move_ip(1,0)
-    elif key[pygame.K_w] == True:
-        player.move_ip(0,-1)
-    elif key[pygame.K_s] == True:
-       player.move_ip(0,1)
-
-    # Exits the window 
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            run = False
-
-    # Updates the display drawings
-        pygame.display.update()
-
-pygame.quit()
+        #This runs any event that happens
+        for event in pygame.event.get():
+            #What makes us to quit. 
+            if event.type == pygame.QUIT:
+                run = False
+#runs the whole thing that in def main() 
+main()
