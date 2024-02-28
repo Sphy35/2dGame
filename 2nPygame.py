@@ -3,6 +3,7 @@ import pygame
 import random 
 import os
 import time
+pygame.font.init()
 
 #Determines Height
 WIDTH, HEIGHT = 900, 900
@@ -19,11 +20,23 @@ FIRST = pygame.transform.scale(pygame.image.load(os.path.join("assets", "First_D
 def main():
     run = True
     FPS = 60 
+    waves = 1
+    lives = 6
+    main_font = pygame.font.SysFont("cosmicsans", 50)
+
     clock = pygame.time.Clock()
 
     # We won't need to pass all the things into a paramater. 
     def redraw_window():
+        #Draws the Background
         WIN.blit(FIRST, (0,0))
+        #Draws the Text 
+        lives_label = main_font.render(f"Lives: {lives}", 1, (255, 0, 0))
+        waves_label = main_font.render(f"Waves: {waves}", 1, (255, 0, 0))
+
+        #Displays the texts 
+        WIN.blit(lives_label, (WIDTH - lives_label.get_width() - 10, 10))
+        WIN.blit(waves_label, (10, 10))
 
         #Will refresh the display
         pygame.display.update()
